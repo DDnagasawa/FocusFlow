@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package usermanagement;
+
+option go_package = "github.com/DDnagasawa/FocusFlow/api/proto/user_management";
+
+// UserManagement service for user operations
+service UserManagement {
+  rpc CreateUser(CreateUserRequest) returns (User);
+  rpc GetUser(GetUserRequest) returns (User);
+  rpc UpdateUser(UpdateUserRequest) returns (User);
+}
+
+// User message
+message User {
+  string id = 1;
+  string name = 2;
+  string email = 3;
+}
+
+// CreateUserRequest message
+message CreateUserRequest {
+  string name = 1;
+  string email = 2;
+  string password = 3;
+}
+
+// GetUserRequest message
+message GetUserRequest {
+  string id = 1;
+}
+
+// UpdateUserRequest message
+message UpdateUserRequest {
+  string id = 1;
+  string name = 2;
+  string email = 3;
+}

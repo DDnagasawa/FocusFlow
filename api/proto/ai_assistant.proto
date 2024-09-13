@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package aiassistant;
+
+option go_package = "github.com/DDnagasawa/FocusFlow/api/proto/ai_assistant";
+
+// AIAssistant service for AI-powered assistance
+service AIAssistant {
+  rpc GetEncouragement(EncouragementRequest) returns (EncouragementResponse);
+  rpc GetTaskAdvice(TaskAdviceRequest) returns (TaskAdviceResponse);
+}
+
+// EncouragementRequest message
+message EncouragementRequest {
+  string user_id = 1;
+  string situation = 2;
+}
+
+// EncouragementResponse message
+message EncouragementResponse {
+  string message = 1;
+}
+
+// TaskAdviceRequest message
+message TaskAdviceRequest {
+  string user_id = 1;
+  string task_id = 2;
+}
+
+// TaskAdviceResponse message
+message TaskAdviceResponse {
+  string advice = 1;
+}

@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package taskmanagement;
+
+option go_package = "github.com/DDnagasawa/FocusFlow/api/proto/task_management";
+
+import "google/protobuf/timestamp.proto";
+
+// TaskManagement service for task operations
+service TaskManagement {
+  rpc CreateTask(CreateTaskRequest) returns (Task);
+  rpc GetTask(GetTaskRequest) returns (Task);
+  rpc UpdateTask(UpdateTaskRequest) returns (Task);
+  rpc ListTasks(ListTasksRequest) returns (ListTasksResponse);
+}
+
+// Task message
+message Task {
+  string id = 1;
+  string user_id = 2;
+  string title = 3;
+  string description = 4;
+  google.protobuf.Timestamp due_date = 5;
+  TaskStatus status = 6;
+}
+
+// TaskStatus enum
+enum TaskStatus {
+  PENDING = 0;
+  IN_PROGRESS = 1;
+  COMPLETED = 2;
+}
+
+// CreateTaskRequest message
+message CreateTaskRequest {
+  string user_id = 1;
+  string title = 2;
+  string description = 3;
+  google.protobuf.Timestamp due_date = 4;
+}
+
+// GetTaskRequest message
+message GetTaskRequest {
+  string id = 1;
+}
+
+// UpdateTaskRequest message
+message UpdateTaskRequest {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  google.protobuf.Timestamp due_date = 4;
+  TaskStatus status = 5;
+}
+
+// ListTasksRequest message
+message ListTasksRequest {
+  string user_id = 1;
+}
+
+// ListTasksResponse message
+message ListTasksResponse {
+  repeated Task tasks = 1;
+}
